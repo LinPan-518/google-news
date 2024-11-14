@@ -7,13 +7,14 @@ interface StoryProps {
 }
 
 const Card: React.FC<StoryProps> = ({ story, showImage = false }) => (
-  <div key={story.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:cursor-pointer hover:shadow-lg">
+  <div
+    key={story.id}
+    className="bg-white rounded-lg shadow-md overflow-hidden hover:cursor-pointer hover:shadow-lg"
+  >
     {showImage && (
       <Image
         src={story.image || "/placeholder.jpg"}
         alt="Card image"
-        width={260}
-        height={200}
         className="w-full h-48 object-cover"
         priority={false}
       />

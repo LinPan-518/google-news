@@ -1,4 +1,4 @@
-import { useState, useEffect, ChangeEvent, KeyboardEvent } from "react";
+import React, { useState, useEffect, ChangeEvent, KeyboardEvent } from "react";
 import { GoSearch } from "react-icons/go";
 import { useDebounce } from "use-debounce";
 interface SearchBarProps {

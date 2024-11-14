@@ -1,3 +1,4 @@
+import React from "react";
 import { Metadata } from "next";
 import { stories, spotlights } from "@/app/lib/data";
 import Card from "@/app/ui/card";
