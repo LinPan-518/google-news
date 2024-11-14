@@ -1,14 +1,24 @@
-import Link from "next/link";
 import React from "react";
-const navItems = ["Home", "For you", "Following", "News Showcase"];
+import clsx from "clsx";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
-const Header = ({ toggleSidebar }: { toggleSidebar: () => void }) => {
+import Search from "@/app/ui/search";
+import { navItems } from "@/app/lib/config";
+
+interface HeaderProps {
+  toggleSidebar: () => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ toggleSidebar }) => {
+  const pathname = usePathname();
+
   return (
-    <header className="sticky top-0 z-10 bg-white shadow-md">
-      <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-        <div className="flex items-center">
+    <header className="sticky top-0 z-40 bg-white shadow-md text-black w-full">
+      <div className="container mx-auto px-4 py-4 flex items-center justify-between gap-6">
+        <div className="flex items-center mr-4">
           <button
-            className="mr-4 block min-[901px]:hidden"
+            className="mr-4 block md:hidden"
             onClick={toggleSidebar}
             aria-label="Toggle menu"
           >
@@ -27,42 +37,31 @@ const Header = ({ toggleSidebar }: { toggleSidebar: () => void }) => {
               />
             </svg>
           </button>
-          <Link href="/" className="text-xl font-bold text-blue-600">
-            Google News
+
+          <Link href="/" className="text-2xl font-bold text-sky-700 italic">
+            News
           </Link>
         </div>
-        <nav className="hidden min-[901px]:flex space-x-4">
+
+        <nav className="flex space-x-8 flex-1">
           {navItems.map((item) => (
             <Link
-              key={item}
-              href="#"
-              className="text-gray-600 hover:text-blue-600"
+              key={item.name}
+              href={item.href}
+              className={clsx("text-lg rounded-md p-2 hover:bg-sky-100", {
+                "bg-sky-300 font-bold": pathname === item.href,
+              })}
             >
-              {item}
+              {item.name}
             </Link>
           ))}
         </nav>
-        <div className="relative">
-          <input
-            type="search"
-            placeholder="Search news"
-            className="pl-10 pr-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          />
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-            />
-          </svg>
-        </div>
+        <Search
+          className={"relative hidden md:block md:max-w-[400px]"}
+          onSearch={(searchTerm: string) => {
+            console.log(searchTerm);
+          }}
+        />
       </div>
     </header>
   );

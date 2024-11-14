@@ -1,22 +1,22 @@
-import Header from "@/app/ui/Header";
-import Footer from "@/app/ui/Footer";
-import "@/app/ui/global.css";
+"use client";
+import React, { useState } from "react";
+import Sidebar from "@/app/ui/sideBar";
+import Header from "@/app/ui/header";
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
   return (
-    <div>
-      <Header />
-      <div className="flex h-screen w-screen flex-col">
-        {/* <SideNav /> */}
-        <div className="flex-grow p-6 md:overflow-y-auto md:p-12">
+    <div className="flex h-screen w-screen flex-col">
+      <Header toggleSidebar={() => setIsSidebarOpen((prev) => !prev)} />
+      <div className="flex grow overflow-auto relative">
+        <Sidebar isOpen={isSidebarOpen} />
+        <main className="flex-grow p-8 overflow-y-auto flex flex-col lg:flex-row gap-8 bg-gray-100">
           {children}
-        </div>
-        <Footer />
+        </main>
       </div>
     </div>
   );
-}
+};
+
+export default DashboardLayout;

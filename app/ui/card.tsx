@@ -8,7 +8,7 @@ interface StoryProps {
 }
 
 const Card: React.FC<StoryProps> = ({ story, showImage = false }) => (
-  <div key={story.id} className="bg-white rounded-lg shadow-md overflow-hidden">
+  <div key={story.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:cursor-pointer hover:shadow-lg">
     {showImage && (
       <Image
         src={story.image || "/placeholder.jpg"}
