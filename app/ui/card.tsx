@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
 import { Story } from "@/app/lib/types";
-
 interface StoryProps {
   story: Story;
   showImage?: boolean;
@@ -13,9 +12,10 @@ const Card: React.FC<StoryProps> = ({ story, showImage = false }) => (
       <Image
         src={story.image || "/placeholder.jpg"}
         alt="Card image"
-        width={800}
-        height={600}
+        width={260}
+        height={200}
         className="w-full h-48 object-cover"
+        priority={false}
       />
     )}
     <div className="p-4">

@@ -1,7 +1,6 @@
 import { useState, useEffect, ChangeEvent, KeyboardEvent } from "react";
 import { GoSearch } from "react-icons/go";
-// import { useDebounce } from "use-debounce";
-
+import { useDebounce } from "use-debounce";
 interface SearchBarProps {
   className?: string;
   placeholder?: string;
@@ -15,7 +14,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
   placeholder,
 }) => {
   const [searchTerm, setSearchTerm] = useState("");
-  // const [debouncedSearchTerm] = useDebounce(searchTerm, 600);
+  const [debouncedSearchTerm] = useDebounce(searchTerm, 600);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
@@ -24,14 +23,14 @@ const SearchBar: React.FC<SearchBarProps> = ({
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       e.preventDefault();
-      // onSearch(debouncedSearchTerm);
+      onSearch(debouncedSearchTerm);
     }
   };
 
   // Whenever the debounced search term changes, trigger the search callback
-  // useEffect(() => {
-  //   onSearch(debouncedSearchTerm);
-  // }, [debouncedSearchTerm, onSearch]);
+  useEffect(() => {
+    onSearch(debouncedSearchTerm);
+  }, [debouncedSearchTerm, onSearch]);
 
   return (
     <section className={`${className} w-full relative`}>
