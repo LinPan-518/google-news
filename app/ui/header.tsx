@@ -15,9 +15,9 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar, isSideOpen }) => {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-40 bg-white shadow-md text-black w-full">
-      <div className="container mx-auto px-4 py-4 flex items-center justify-between gap-6">
-        <div className="flex items-center mr-4">
+    <header className="fixed top-0 z-40 bg-white shadow-md text-black w-full">
+      <div className="container mx-auto px-4 py-4 flex items-start justify-start gap-2 sm:gap-6 flex-col sm:flex-row sm:justify-between sm:items-center">
+        <div className="flex items-center sm:mr-4 ">
           <button
             className="mr-4 block md:hidden"
             onClick={toggleSidebar}
@@ -34,15 +34,18 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar, isSideOpen }) => {
             News
           </Link>
         </div>
-
-        <nav className="flex space-x-8 flex-1">
+        <hr className="border-b-1 w-full border-b-slate-100 sm:hidden" />
+        <nav className="flex space-x-8 flex-1 sm:w-full">
           {navItems.map((item) => (
             <Link
               key={item.name}
               href={item.href}
-              className={clsx("text-lg rounded-md p-2 hover:bg-sky-100", {
-                "bg-sky-300 font-bold": pathname === item.href,
-              })}
+              className={clsx(
+                "text-sm sm:text-lg rounded-md p-2 hover:bg-sky-100",
+                {
+                  "bg-sky-300 font-bold": pathname === item.href,
+                }
+              )}
             >
               {item.name}
             </Link>

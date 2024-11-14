@@ -39,13 +39,13 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
 
   return (
     <aside
-      className={`bg-gray-100 h-full fixed inset-y-0 left-0 z-30 px-2 py-5 min-w-60 shadow-lg transition-transform duration-300 ease-in-out ${
+      className={`bg-gray-100 h-full fixed overflow-y-hidden top-[125px] sm:top-[76px] left-0 z-30 px-2 py-5 min-w-60 shadow-lg transition-transform duration-300 ease-in-out ${
         isLargeScreen
           ? "translate-x-0"
           : isOpen
             ? "translate-x-0"
             : "-translate-x-full"
-      } md:relative md:translate-x-0 absolute`}
+      } md:relative md:inset-y-0 md:translate-x-0`}
     >
       <div className="flex grow justify-between flex-col">
         <Search

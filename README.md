@@ -2,6 +2,8 @@
 
 This project is a responsive web page, similar to [google news](https://news.google.com/) .
 
+Demo: [News Dashboard](https://google-news.vercel.app/) deployed and supported by [Vercel](https://vercel.com/).
+
 ## Tools for usage
 
 - [React](https://react.dev/) for front-end implementation.

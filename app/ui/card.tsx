@@ -15,6 +15,8 @@ const Card: React.FC<StoryProps> = ({ story, showImage = false }) => (
       <Image
         src={story.image || "/placeholder.jpg"}
         alt="Card image"
+        width={150}
+        height={100}
         className="w-full h-48 object-cover"
         priority={false}
       />
